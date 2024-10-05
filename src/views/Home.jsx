@@ -1,23 +1,21 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useMemo } from 'react'
+import { useQuery } from '@tanstack/react-query'
 
+import { Loading } from '../components/Loading'
 import { MoviesList } from '../components/MoviesList'
 import { MoviesContainer } from '../components/styled/MoviesContainer'
+
 import { MoviesService } from '../infra/MoviesService'
 
 export const Home = () => {
-  const [movies, setMovies] = useState([])
+  const { data, isLoading } = useQuery({
+    queryKey: ['popular-movies'],
+    queryFn: () => MoviesService.getPopularMovies().then(({ data }) => data),
+    initialData: { results: [] },
+    refetchOnWindowFocus: false,
+  })
 
-  const getMovies = useCallback(() => {
-    MoviesService.getPopularMovies()
-      .then(({ data }) => setMovies(data.results))
-      .catch(e => e)
-  }, [setMovies])
+  const movies = useMemo(() => data.results, [data.results])
 
-  useEffect(getMovies, [getMovies])
-
-  return (
-    <MoviesContainer>
-      <MoviesList movies={movies} />
-    </MoviesContainer>
-  )
+  return <MoviesContainer>{isLoading ? <Loading /> : <MoviesList movies={movies} />}</MoviesContainer>
 }
