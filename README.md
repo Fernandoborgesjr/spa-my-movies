@@ -1,70 +1,66 @@
-# Getting Started with Create React App
+# Projeto React - Aula Prática de Arquitetura de Software Frontend - PUC Minas
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este projeto foi desenvolvido durante a aula prática da disciplina de **Arquitetura de Software Frontend** da [PUC Minas](https://www.pucminas.br). O objetivo principal foi demonstrar o uso de **Single Page Application (SPA)** utilizando o React.
 
-## Available Scripts
+## Funcionalidades
 
-In the project directory, you can run:
+O projeto demonstra uma SPA funcional, utilizando práticas recomendadas para otimização e boas práticas de desenvolvimento em frontend, incluindo:
 
-### `npm start`
+- Rotas dinâmicas e personalizadas.
+- Integração com APIs externas.
+- Otimização de performance e estruturação de componentes.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Scripts
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Os seguintes scripts podem ser executados com **Yarn** para rodar, testar e construir o projeto:
 
-### `npm test`
+```json
+"scripts": {
+  "start": "react-scripts start",       // Inicia o servidor de desenvolvimento
+  "build": "react-scripts build",       // Gera o build otimizado para produção
+  "test": "react-scripts test",         // Executa os testes
+  "eject": "react-scripts eject"        // Ejeção da configuração padrão do React
+}
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Para executar o projeto localmente:
 
-### `npm run build`
+1. Instale as dependências:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   ```bash
+   yarn install
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. Inicie o servidor de desenvolvimento:
+   ```bash
+   yarn start
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Melhorias Implementadas
 
-### `npm run eject`
+Durante o desenvolvimento do projeto, realizei os seguintes pontos de melhoria:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. **Utilização de variáveis de ambiente para a API do TMDB**  
+   Agora, as chaves de API e as URLs base são armazenadas em variáveis de ambiente, o que facilita a troca de ambientes (desenvolvimento/produção) e melhora a segurança do projeto. Exemplo no arquivo `.env`:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   ```env
+   REACT_APP_TMDB_API_KEY=your_api_key_here
+   REACT_APP_TMDB_API_URL=https://api.themoviedb.org/3
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+2. **Otimização de queries com React Query**  
+   As chamadas à API foram otimizadas utilizando o **React Query** para melhorar o gerenciamento de cache e o carregamento eficiente de dados. Isso reduz a quantidade de requisições desnecessárias e melhora a experiência do usuário ao lidar com dados assíncronos.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+3. **Uso de rota de layout com Outlet**  
+   A estrutura de rotas foi aprimorada com o uso do componente `Outlet`, que permite a definição de layouts comuns para diversas páginas. Isso simplifica a manutenção e melhora a organização da aplicação.
 
-## Learn More
+4. **Definição de rota padrão**  
+   Foi configurada uma rota padrão (fallback) para redirecionar os usuários para uma página específica quando acessam rotas inválidas ou inexistentes, melhorando a navegação e a experiência do usuário.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Tecnologias Utilizadas
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- **React**: Biblioteca principal utilizada para construção da interface e lógica da aplicação.
+- **React Router**: Utilizado para gerenciamento de rotas.
+- **React Query**: Utilizado para otimização e cache de requisições à API.
+- **TMDB API**: Integração com a API pública de filmes e séries.
+- **Yarn**: Gerenciador de pacotes.
