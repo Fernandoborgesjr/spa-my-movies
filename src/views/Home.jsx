@@ -10,9 +10,11 @@ import { MoviesService } from '../infra/MoviesService'
 export const Home = () => {
   const { data, isLoading } = useQuery({
     queryKey: ['popular-movies'],
-    queryFn: () => MoviesService.getPopularMovies().then(({ data }) => data),
+    queryFn: () => MoviesService.getPopular().then(({ data }) => data),
     initialData: { results: [] },
     refetchOnWindowFocus: false,
+    staleTime: 1000 * 60 * 10,
+    initialDataUpdatedAt: Date.now() - 1000 * 60 * 10,
   })
 
   const movies = useMemo(() => data.results, [data.results])
